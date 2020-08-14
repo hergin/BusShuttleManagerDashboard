@@ -126,7 +126,9 @@ require '../themepart/pageContentHolder.php';
             <th>Starting Mileage</th>
             <th>Ending Mileage</th>
             <th>Pre Inspection</th>
-            <th>Post Inspection</th> 
+            <th>Post Inspection</th>
+            <th>Pre Inspection Comments</th>
+            <th>Post Inspection Comments</th> 
             </tr>
         </thead>
         <tbody id="loadingTable" style="display:none" class="row_position">
@@ -143,6 +145,8 @@ require '../themepart/pageContentHolder.php';
                     <td><?php echo $report->ending_mileage; ?></td>
                     <td><?php echo parse_Inspection_Items($report->pre_trip_inspection); ?></td>
                     <td><?php echo parse_Inspection_Items($report->post_trip_inspection); ?></td>
+                    <td><?php echo $report->pre_comment; ?></td>
+                    <td><?php echo $report->post_comment; ?></td>
                     <td style="display:none;"><?php echo $report->id; ?></td>
                     
                 </tr>
