@@ -180,11 +180,7 @@ require '../themepart/pageContentHolder.php';
         <tbody class="row_position">
             <?php if (isset($stopNames)) {
                 foreach ($stopNames as $log) : ?>
-                    <tr class="<?php if ($log->displayOrder == "0") {
-                                   header('Location: Routes.php');
-                                } else {
-                                    echo "";
-                                } ?>" id="<?php $log->id; ?>">
+                    <tr class="" id="<?php echo $log->id; ?>">
                         <td width="20%">
                         <a href="#!" class="up btn btn-dark">Move Up</a>
                         <a href="#!" class="down btn btn-dark">Move Down</a>
