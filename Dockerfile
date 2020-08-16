@@ -1,4 +1,4 @@
-FROM mattrayner/lamp:latest-1804
+FROM mattrayner/lamp:latest-1404
 
 ADD initialize_db.sh /initialize_db.sh
 RUN cat /run.sh | head -n -2 > /newrun.sh && \
