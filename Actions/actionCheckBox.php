@@ -20,30 +20,19 @@ function updateCheckbox ($input)
 
 $InspectionItemID = $input['id'];
 $InspectionItemType = $input['type'];
-$InspectionItemCheck = $input['checked'];
+$InspectionItemCheck = intval($input['checked']);
 
 $AccessLayer = new AccessLayer();
 
 if($InspectionItemType === 'pre') {
-    if($InspectionItemCheck){
-        $AccessLayer->update_pre_checkbox($InspectionItemID,1 );
-        return true;
-    }else{
-        $AccessLayer->update_pre_checkbox($InspectionItemID,0 );
-        return true;
-    }
+    $AccessLayer->update_pre_checkbox($InspectionItemID,$InspectionItemCheck);
+    return true;
 }
 if($InspectionItemType === 'post') {
-    if($InspectionItemCheck){
-        $AccessLayer->update_post_checkbox($InspectionItemID,1 );
-        return true;
-    }else{
-        $AccessLayer->update_post_checkbox($InspectionItemID,0 );
-        return true;
-    }
+    $AccessLayer->update_post_checkbox($InspectionItemID,$InspectionItemCheck);
+    return true;
 }
 return false;
-
 }
 
 if(updateCheckbox($checkbox)){

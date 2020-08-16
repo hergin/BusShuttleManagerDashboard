@@ -230,7 +230,7 @@ class AccessLayer
 
   public function add_inspection_items($InspectionItemsName, $Pre, $Post)
   {
-    $sql = sprintf("INSERT INTO `inspection_items_list`(`inspection_item_name`, `pre_trip_inspection`, `post_trip_inspection`) VALUES ( '$InspectionItemsName', '$Pre', '$Post')");
+    $sql = sprintf("INSERT INTO `inspection_items_list`(`inspection_item_name`, `pre_trip_inspection`, `post_trip_inspection`) VALUES ( '$InspectionItemsName', $Pre, $Post)");
     $results = $this->query($sql);
   }
 
@@ -242,32 +242,20 @@ class AccessLayer
 
   public function update_inspection_items($InspectionItemID, $InspectionItemsName)
   {
-    $sql = sprintf("UPDATE inspection_items_list SET inspection_item_name='$InspectionItemsName'WHERE id='$InspectionItemID'");
+    $sql = sprintf("UPDATE inspection_items_list SET inspection_item_name='$InspectionItemsName' WHERE id='$InspectionItemID'");
     $results = $this->query($sql);
   }
 
 // there is bug in MySQL Bug #80933, bit value of 0 does not update unless used the method below.
   public function update_pre_checkbox ($InspectionItemID, $pre_item)
   {
-    if($pre_item === 0){
-      $sql = sprintf("UPDATE inspection_items_list SET pre_trip_inspection = b'$pre_item'WHERE id='$InspectionItemID'");
-    }
-    if($pre_item === 1){
-      $sql = sprintf("UPDATE inspection_items_list SET pre_trip_inspection = '$pre_item'WHERE id='$InspectionItemID'");
-    }
-    
+    $sql = sprintf("UPDATE inspection_items_list SET pre_trip_inspection = $pre_item WHERE id='$InspectionItemID'");    
     $results = $this->query($sql); 
   }
 
   public function update_post_checkbox ($InspectionItemID, $post_item)
   {
-    if($post_item === 0){
-      $sql = sprintf("UPDATE inspection_items_list SET post_trip_inspection = b'$post_item'WHERE id='$InspectionItemID'");
-    }
-    if($post_item === 1){
-      $sql = sprintf("UPDATE inspection_items_list SET post_trip_inspection = '$post_item'WHERE id='$InspectionItemID'");
-    }
-    
+    $sql = sprintf("UPDATE inspection_items_list SET post_trip_inspection = $post_item WHERE id='$InspectionItemID'");
     $results = $this->query($sql); 
   }
 

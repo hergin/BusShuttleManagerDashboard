@@ -26,8 +26,12 @@ $results;
 if(isset($_POST['SubmitButton'])){
   $input = $_POST['inputText'];
   if($input != '') {
-    $pre = $_POST['pre_item'];
-    $post = $_POST['post_item'];
+    $pre = 0;
+    if(isset($_POST['pre_item'])) 
+      $pre = 1;
+    $post = 0;
+    if(isset($_POST['post_item']))
+      $post = 1;
     addInspectionItems($input, $pre, $post);
   }
   header('Location: Inspection_items.php');
@@ -126,9 +130,9 @@ $(document).ready(function(){
 var item_id = $(this).attr('entryid');
 var item_type = $(this).attr('entryType');
 var item_checked = $(this).prop('checked');
-var box = {"id":item_id,"type":item_type,"checked":item_checked};
+var pass_checked = item_checked?"1":"0";
+var box = {"id":item_id,"type":item_type,"checked":pass_checked};
 var inputString = JSON.stringify(box);
-
 
 $.ajax({
   url: '../Actions/actionCheckBox.php',
