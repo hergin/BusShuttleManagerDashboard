@@ -7,7 +7,7 @@ function connect()
 {
   $connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DBNAME);
 
-  if (mysqli_connect_errno($connect)) {
+  if (mysqli_connect_errno()) {
     die("Failed to connect:" . mysqli_connect_error());
   }
 
