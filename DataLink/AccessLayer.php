@@ -149,9 +149,9 @@ class AccessLayer
     return $this->query($sql);
   }
 
-  public function add_stop($stopName)
+  public function add_stop($stopName, $longitude, $latitude)
   {
-    $sql = sprintf("INSERT INTO `stops`(`stops`) VALUES ( '$stopName' )");
+    $sql = sprintf("INSERT INTO `stops`(`stops`, `longitude`, `latitude`) VALUES ( '$stopName', '$longitude', '$latitude' )");
     $this->query($sql);
   }
 
@@ -172,9 +172,9 @@ class AccessLayer
     $this->query($sql);
   }
 
-  public function update_stop($stopID, $stopName)
+  public function update_stop($stopID, $stopName, $longitude, $latitude)
   {
-    $sql = sprintf("UPDATE stops SET stops='$stopName'WHERE id='$stopID'");
+    $sql = sprintf("UPDATE stops SET stops='$stopName', longitude = '$longitude', latitude= '$latitude' WHERE id='$stopID'");
     $this->query($sql);
   }
 

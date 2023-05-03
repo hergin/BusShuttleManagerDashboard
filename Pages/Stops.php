@@ -18,7 +18,9 @@ require_once(dirname(__FILE__) . '/../DataLink/AccessLayer.php');
 
 $_SESSION["Title"]="Stops";
 
-$input = "";
+$inputStop = "";
+$inputLongitude = "";
+$inputLatitude = "";
 $results;
 
 makeList($results);
@@ -26,9 +28,11 @@ makeList($results);
 
 // If post occurs
 if (isset($_POST['SubmitButton'])) {
-    $input = $_POST['inputText'];
-    if ($input != '') {
-        postLoop($input);
+    $inputStop = $_POST['stop'];
+    $inputLongitude = $_POST['longitude'];
+    $inputLatitude = $_POST['latitude'];
+    if ($inputStop != '' || $inputLatitude != '' || $inputLongitude != '') {
+        postLoop($inputStop, $inputLongitude, $inputLatitude);
     }
     header('Location: Stops.php');
 }
@@ -39,10 +43,10 @@ function makeList(&$results)
     $results = $AccessLayer->get_stops(); 
 }
 
-function postLoop($stopName)
+function postLoop($stopName, $longitude, $latitude)
 {
     $AccessLayer = new AccessLayer();
-    $AccessLayer->add_stop($stopName);
+    $AccessLayer->add_stop($stopName, $longitude, $latitude);
 }
 
 ?>
@@ -73,7 +77,19 @@ require '../themepart/pageContentHolder.php';
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label class="sr-only" for="inlineFormInput">Stop Name</label>
-                            <input type="text" input="text" class="form-control mb-2" name='inputText' id="inlineFormInput" placeholder="enter stop name" required>
+                            <input type="text" input="text" class="form-control mb-2" name='stop' id="stop" placeholder="enter stop name" required>
+                        </div>
+                        <div class="col-auto">
+                        </div>
+                        <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInput">Latitude</label>
+                            <input type="text" input="text" class="form-control mb-2" name='latitude' id="latitude" placeholder="enter Latitude" required>
+                        </div>
+                        <div class="col-auto">
+                        </div>
+                        <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInput">Longitude</label>
+                            <input type="text" input="text" class="form-control mb-2" name='longitude' id="longitude" placeholder="enter Longitude" required>
                         </div>
                         <div class="col-auto">
                         </div>
@@ -82,8 +98,6 @@ require '../themepart/pageContentHolder.php';
                         </div>
                     </div>
                 </form>
-
-
 
                 <div class="d-flex justify-content-center">
                 </div>
@@ -98,17 +112,21 @@ require '../themepart/pageContentHolder.php';
         <thead>
             <tr>
                 <th>Stop</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
             </tr>
         </thead>
         <tbody class="row_position">
             <?php foreach ($results as $stop) : ?>
                 <tr id="<?php echo $stop->id ?>">
                     <td><?php echo $stop->stops; ?></td>
+                    <td><?php echo floatval($stop->Latitude); ?></td>
+                    <td><?php echo floatval($stop->Longitude); ?></td>
                     <td style="display:none;"><?php echo $stop->id; ?></td>
                 </tr>
             <?php endforeach ?>
         </tbody>
-    </table>
+    </table> 
     </div>
 </body>
 
@@ -124,9 +142,11 @@ require '../themepart/pageContentHolder.php';
         }
     },
             columns: {
-                identifier: [1, 'id'],
+                identifier: [3, 'id'],
                 editable: [
-                    [0, 'stop']
+                    [0, 'stop'], 
+                    [1, 'Latitude'], 
+                    [2, 'Longitude']
                 ]
             }
         });
