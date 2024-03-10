@@ -172,10 +172,10 @@
             <tr>
                 <th>Stops</th>
                 <?php 
-                $time = 7; 
+                $time = 0; 
                 $AMOrPM = 'AM';
                 
-                for($i = 0; $i<17; $i=$i+1){ ?>
+                for($i = 0; $i<24; $i=$i+1){ ?>
                     <td><?php echo "$time:00 - $time:59 $AMOrPM" ; ?></td>
                     <?php 
                         if($time == 11){
