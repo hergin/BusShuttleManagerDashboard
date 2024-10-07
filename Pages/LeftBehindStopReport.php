@@ -1,19 +1,27 @@
 <?php
-    require '../Database/connect.php';
-    require_once('../ulogin/config/all.inc.php');
-    require_once('../ulogin/main.inc.php');
+  
+session_start();
+if (!isset($_SESSION['authenticated'])) {
+    header('Location: ../index.php');
+    exit;
+}
+
+
+  require '../Database/connect.php';
+//    require_once('../ulogin/config/all.inc.php');
+//    require_once('../ulogin/main.inc.php');
     
-    if (!sses_running())
-        sses_start();
+//    if (!sses_running())
+//        sses_start();
     
-    function isAppLoggedIn(){
-        return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn']===true);
-    }
+//    function isAppLoggedIn(){
+//        return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn']===true);
+//    }
     
-    if (!isAppLoggedIn()) {
-        header("Location: ../index.php"); /* Redirect browser */
-       exit();
-    } 
+//    if (!isAppLoggedIn()) {
+//        header("Location: ../index.php"); /* Redirect browser */
+//       exit();
+//    } 
 
      $hourly = array();
     $entries = array();

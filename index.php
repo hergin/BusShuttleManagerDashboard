@@ -83,7 +83,7 @@ $ulogin = new uLogin('appLogin', 'appLoginFail');
 // We will handle presentation after our logic because what we present is
 // also based on the logon state, but the application logic might change whether
 // we are logged in or not.
-
+/*
 if (isAppLoggedIn()){
 	if ($action=='delete')	{	// We've been requested to delete the account
 
@@ -146,7 +146,7 @@ if (isAppLoggedIn()){
 			$msg = 'account created';
 	}
 }
-
+ */
 // Now we handle the presentation, based on whether we are logged in or not.
 // Nothing fancy, except where we create the 'login'-nonce towards the end
 // while generating the login form.
@@ -176,7 +176,7 @@ if (isAppLoggedIn()){
     <h1 align="center" style="color:#FFFFFF;" class="display-4">Transportation Management Dashboard</h1>
   </div>
 </div>
-	<form align="center" action="index.php" method="POST">
+	<form align="center" action="login.php" method="POST">
 	<fieldset>
 <!-- Form Name -->
 <legend align="center">Login</legend>
@@ -185,7 +185,7 @@ if (isAppLoggedIn()){
 <div align="center" class="form-group">
   <label class="col-md-4 control-label" for="user"></label>  
   <div class="col-md-4">
-  <input id="user" name="user" type="text" placeholder="Username" class="form-control input-md" required="">
+  <input id="user" name="username" type="text" placeholder="Username" class="form-control input-md" required="">
     
   </div>
 </div>
@@ -194,7 +194,7 @@ if (isAppLoggedIn()){
 <div align="center" class="form-group">
   <label class="col-md-4 control-label" for="pwd"></label>
   <div class="col-md-4">
-    <input id="pwd" name="pwd" type="password" placeholder="Password" class="form-control input-md" required="">
+    <input id="pwd" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
     
   </div>
 </div>

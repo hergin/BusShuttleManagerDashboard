@@ -1,18 +1,27 @@
 <?php
-require_once('../ulogin/config/all.inc.php');
-require_once('../ulogin/main.inc.php');
+//require_once('../ulogin/config/all.inc.php');
+//require_once('../ulogin/main.inc.php');
+//
+//if (!sses_running())
+//	sses_start();
+//
+//function isAppLoggedIn(){
+//	return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn']===true);
+//}
 
-if (!sses_running())
-	sses_start();
+//if (!isAppLoggedIn()) {
+//    header("Location: ../index.php"); /* Redirect browser */
+//   exit();
+//} 
 
-function isAppLoggedIn(){
-	return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn']===true);
+
+session_start();
+if (!isset($_SESSION['authenticated'])) {
+    header('Location: ../index.php');
+    exit;
 }
 
-if (!isAppLoggedIn()) {
-    header("Location: ../index.php"); /* Redirect browser */
-   exit();
-} 
+
     require '../Database/connect.php';
     $_SESSION["Title"]="Students Left Behind by Bus";
 

@@ -99,7 +99,7 @@ function appLogout()
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <form action="../index.php" method="POST"><input type="hidden" name="action" value="logout"><input id="test" class="btn btn-block btn-light" type="submit" value="Logout"></form>
+                    <a class="btn btn-block btn-dark"  href="../logout.php">Log out</a>
                 </li>
             </ul>
         </nav>
